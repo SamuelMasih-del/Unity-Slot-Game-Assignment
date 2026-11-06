@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Slot Machine - Samuel Masih</title>
+<style>
+body{background:#1a1a2e;color:white;font-family:Arial;text-align:center;padding:20px}
+h1{color:#ffd700}
+.reels{display:flex;justify-content:center;gap:10px;margin:20px}
+.reel{background:white;color:black;font-size:60px;width:90px;height:90px;display:flex;align-items:center;justify-content:center;border-radius:15px}
+button{background:#ffd700;border:none;padding:15px 40px;font-size:20px;font-weight:bold;border-radius:10px;cursor:pointer}
+button:disabled{opacity:0.5}
+.info{font-size:18px;margin:10px}
+.win{color:#00ff88;font-size:22px;font-weight:bold;height:30px}
+table{margin:20px auto;background:#16213e;border-radius:10px;padding:10px}
+td{padding:8px 15px}
+</style>
+</head>
+<body>
+<h1>🎰 SLOT MACHINE 🎰</h1>
+<p>By Samuel Masih</p>
+<div class="info">Balance: <span id="bal">1000</span> | Bet: <span id="bet">100</span></div>
+<div>
+<button onclick="changeBet(-50)">- Bet</button>
+<button onclick="changeBet(50)">+ Bet</button>
+</div>
+<div class="reels">
+<div class="reel" id="r1">🍒</div>
+<div class="reel" id="r2">🍋</div>
+<div class="reel" id="r3">💎</div>
+</div>
+<div class="win" id="msg">Good Luck!</div>
+<button id="spinBtn" onclick="spin()">SPIN 🎲</button>
+<table>
+<tr><td>🍒🍒🍒</td><td>500</td></tr>
+<tr><td>💎💎💎</td><td>1750 JACKPOT!</td></tr>
+<tr><td>Any 2 Match</td><td>100</td></tr>
+</table>
+<script>
+let balance=1000, bet=100;
+let symbols=["🍒","🍋","💎","⭐","🔔","🍇"];
+function changeBet(v){ bet+=v; if(bet<50)bet=50; if(bet>500)bet=500; document.getElementById("bet").innerText=bet; }
+function spin(){
+ if(balance<bet){ document.getElementById("msg").innerText="Balance Khatam! Refresh Karo"; return; }
+ balance-=bet;
+ document.getElementById("bal").innerText=balance;
+ document.getElementById("spinBtn").disabled=true;
+ document.getElementById("msg").innerText="Spinning...";
+ let count=0;
+ let timer=setInterval(()=>{
+   document.getElementById("r1").innerText=symbols[Math.floor(Math.random()*6)];
+   document.getElementById("r2").innerText=symbols[Math.floor(Math.random()*6)];
+   document.getElementById("r3").innerText=symbols[Math.floor(Math.random()*6)];
+   count++;
+   if(count>15){ clearInterval(timer); checkWin(); document.getElementById("spinBtn").disabled=false; }
+ },100);
+}
+function checkWin(){
+ let a=document.getElementById("r1").innerText;
+ let b=document.getElementById("r2").innerText;
+ let c=document.getElementById("r3").innerText;
+ let win=0, msg="";
+ if(a=="🍒"&&b=="🍒"&&c=="🍒"){win=500;msg="🍒 JACKPOT! +500";}
+ else if(a=="💎"&&b=="💎"&&c=="💎"){win=1750;msg="💎 MEGA JACKPOT! +1750";}
+ else if(a==b||b==c||a==c){win=100;msg="Nice! +100";}
+ else{msg="Try Again!";}
+ balance+=win;
+ document.getElementById("bal").innerText=balance;
+ document.getElementById("msg").innerText=msg;
+}
+</script>
+</body>
+</html>
