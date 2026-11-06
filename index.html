@@ -68,6 +68,31 @@ function checkWin(){
  document.getElementById("bal").innerText=balance;
  document.getElementById("msg").innerText=msg;
 }
+</script><script>
+// SOUND
+let AC;
+function beep(f1,f2,d,type){
+  try{
+    if(!AC) AC=new (window.AudioContext||window.webkitAudioContext)();
+    let o=AC.createOscillator(), g=AC.createGain();
+    o.connect(g); g.connect(AC.destination);
+    o.type=type||'sine';
+    o.frequency.setValueAtTime(f1,AC.currentTime);
+    o.frequency.linearRampToValueAtTime(f2,AC.currentTime+d);
+    g.gain.setValueAtTime(0.2,AC.currentTime);
+    o.start(); o.stop(AC.currentTime+d);
+  }catch(e){}
+}
+// SPIN dabate hi sound
+document.querySelector('button').addEventListener('click',()=>beep(200,800,0.4,'sawtooth'));
+// WIN / LOSE ka sound - msg dekh ke
+let m=document.getElementById("msg");
+let obs=new MutationObserver(()=>{
+  let t=m.innerText;
+  if(t.includes("Jackpot")||t.includes("Win")){ beep(523,784,0.15,'sine'); setTimeout(()=>beep(659,1046,0.3,'sine'),150); }
+  else if(t.includes("Try")){ beep(300,100,0.4,'square'); }
+});
+obs.observe(m,{childList:true,characterData:true,subtree:true});
 </script>
 </body>
 </html>
