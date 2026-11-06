@@ -93,7 +93,7 @@ let obs=new MutationObserver(()=>{
   else if(t.includes("Try")){ beep(300,100,0.4,'square'); }
 });
 obs.observe(m,{childList:true,characterData:true,subtree:true});let spinBtn=[...document.querySelectorAll('button')].find(b=>b.innerText.includes('SPIN'));
-if(spinBtn){spinBtn.addEventListener('pointerdown',()=>beep(200,800,0.4,'sawtooth'));}
+if(spinBtn){spinBtn.addEventListener('pointerdown',()=>beep(200,800,0.4,'sawtooth'));}document.addEventListener('pointerdown',()=>{try{audioCtx.resume();}catch(e){} beep(200,800,0.4,'sawtooth');},true);
 </script>
 </body>
 </html>
