@@ -92,7 +92,8 @@ let obs=new MutationObserver(()=>{
   if(t.includes("Jackpot")||t.includes("Win")){ beep(523,784,0.15,'sine'); setTimeout(()=>beep(659,1046,0.3,'sine'),150); }
   else if(t.includes("Try")){ beep(300,100,0.4,'square'); }
 });
-obs.observe(m,{childList:true,characterData:true,subtree:true});
+obs.observe(m,{childList:true,characterData:true,subtree:true});let spinBtn=[...document.querySelectorAll('button')].find(b=>b.innerText.includes('SPIN'));
+if(spinBtn){spinBtn.addEventListener('pointerdown',()=>beep(200,800,0.4,'sawtooth'));}
 </script>
 </body>
 </html>
