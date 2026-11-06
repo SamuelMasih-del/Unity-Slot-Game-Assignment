@@ -89,7 +89,7 @@ document.querySelector('button').addEventListener('click',()=>beep(200,800,0.4,'
 let m=document.getElementById("msg");
 let obs=new MutationObserver(()=>{
   let t=m.innerText;
-  if(t.includes("Jackpot")||t.includes("Win")){ beep(523,784,0.15,'sine'); setTimeout(()=>beep(659,1046,0.3,'sine'),150); }
+  if(t.includes("Jackpot")||t.includes("Win")||t.includes("Won")||t.includes("won")||t.includes("WIN")||t.includes("🎉")){ beep(500,1200,0.6,'sine'); setTimeout(()=>beep(659,1046,0.3,'sine'),150); }
   else if(t.includes("Try")){ beep(300,100,0.4,'square'); }
 });
 obs.observe(m,{childList:true,characterData:true,subtree:true});let spinBtn=[...document.querySelectorAll('button')].find(b=>b.innerText.includes('SPIN'));
