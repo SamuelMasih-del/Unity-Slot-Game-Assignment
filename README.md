@@ -10,15 +10,14 @@ A complete 3-Reel Slot Machine game made in Unity (C#) with RNG, Winning Logic, 
 - Balance System: Start with 1000 coins
 - Bet System: Increase / Decrease bet (10 to 200)
 - Win Effects: Win Panel + Particles + Jackpot message
-
 ## Payout Table
-- 3x Diamond = MEGA JACKPOT 1000
-- 3x Seven = 500
-- 3x Bar = 300
-- 3x Bell = 200
-- 3x Lemon = 100
-- 3x Cherry = 50
-- Any 2 Match = 20
+- 3x Cherry = Bet x 10 = 500 coins
+- 3x Lemon = Bet x 15 = 750 coins
+- 3x Bell = Bet x 20 = 1000 coins
+- 3x Bar = Bet x 25 = 1250 coins
+- 3x Seven = Bet x 30 = 1500 coins
+- 3x Diamond = Bet x 35 = 1750 coins - MEGA JACKPOT
+- Any 2 Match = Bet x 2 = 100 coins
 
 ## Project Structure
 Assets/Scripts/
